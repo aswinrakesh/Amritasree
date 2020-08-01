@@ -1,0 +1,22 @@
+{
+  "name": "amritasree",
+  "version": "1.0.0",
+  "description": "This is for a mobile application",
+  "main": "connection.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.3.1",
+    "dateformat": "^3.0.3",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-partials": "^0.3.0",
+    "jquery": "^3.4.1",
+    "mysql": "^2.17.1",
+    "tether": "^1.4.7"
+  }
+}
