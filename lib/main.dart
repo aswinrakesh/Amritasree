@@ -135,7 +135,7 @@ class _DetailListState extends State<DetailList> {
                               if (Details[i].Password ==
                                   passwordController.text) {
 
-                                var url = "http://192.168.0.5:4000/getMemberID";
+                                var url = "http://192.168.1.7:4000/getMemberID";
                                 print(Details[i].MemberID);
                                 http.post(url, body: {
                                   "MemberID": Details[i].MemberID.toString(),
@@ -178,7 +178,7 @@ class _DetailListState extends State<DetailList> {
 }
 
 Future<List<MemberDetailsClass>> fetchMembersDetails() async {
-  Response response = await http.get('http://192.168.0.5:4000/');
+  Response response = await http.get('http://192.168.1.7:4000/');
   print(response.body);
   final parsed = json.decode(response.body);
   return parsed

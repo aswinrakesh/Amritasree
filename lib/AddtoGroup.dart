@@ -24,11 +24,11 @@ class _ATG extends State<ATG> {
     getGroups();
   }
 
-  static List<String> s=[""];
+  List<String> s=[""];
   var dataJson=[];
   var datalogin;
-  String groupid = null;
-  List<String> _groupid ;
+  String groupid = null ;
+  List<String> _groupid =[""];
   Future<String> getGroups()async{
     print(dataJson.isEmpty);
 
@@ -40,14 +40,17 @@ class _ATG extends State<ATG> {
     setState(() {
       dataJson = json.decode(response.body);
       print(dataJson);
-      //print(dataJson.length);
+      print(dataJson.length);
       if(dataJson!=null){
-        s=[dataJson[0]['GroupID']];
+        s.add(dataJson[0]['GroupID'].toString());
+        print(s);
         for(int i=1;i<dataJson.length;i++){
           if(dataJson[i]['GroupID']!=0){
-            s.add(dataJson[i]['GroupID']);
+            s.add(dataJson[i]['GroupID'].toString());
           }
-        }s.cast<String>();
+        }
+        s.removeAt(0);
+        s.cast<String>();
         print(s);
         _groupid=s;
         print(_groupid);
@@ -193,8 +196,8 @@ class _ATG extends State<ATG> {
                             setState(() {
                               if(_formKey.currentState.validate())
                               {getlogin(uname.text);
-                              print(datalogin[0]['group_id']);
-                              if(datalogin[0]['group_id']=='0')
+                              print(datalogin[0]['GroupID']);
+                              if(datalogin[0]['GroupID']==1)
                                 _ackAlert(context);
                               else
                                 Navigator.push(context,MaterialPageRoute(
