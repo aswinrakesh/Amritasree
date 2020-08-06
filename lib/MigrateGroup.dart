@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:amritasreeproject/selectOption.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -8,13 +8,13 @@ import 'dart:async';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-class ATG extends StatefulWidget {
+class MG extends StatefulWidget {
 
   @override
-  _ATG createState() =>_ATG();
+  _MG createState() =>_MG();
 }
 
-class _ATG extends State<ATG> {
+class _MG extends State<MG> {
   bool _validate = false;
   bool visible = true;
 
@@ -46,6 +46,7 @@ class _ATG extends State<ATG> {
         print(s);
         for(int i=1;i<dataJson.length;i++){
             s.add(dataJson[i]['GroupID'].toString());
+
         }
         s.removeAt(0);
         s.cast<String>();
@@ -131,7 +132,7 @@ class _ATG extends State<ATG> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Group'),
+        title: Text('Migrate Group'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -215,12 +216,15 @@ class _ATG extends State<ATG> {
                               if(_formKey.currentState.validate())
                               {getlogin(phno.text);
                               print(datalogin[0]['GroupID']);
-                              if(datalogin[0]['GroupID']==1)
+                              if(datalogin[0]['GroupID']!=1)
                                 _ackAlert(context);
-                              else
-                                Navigator.push(context,MaterialPageRoute(
-                                    builder: (BuildContext context)=>
+                              else {
+                                Fluttertoast.showToast(
+                                    msg: "${datalogin[0]['username']} hasn't been added to any group");
+                                Navigator.push(context, MaterialPageRoute(
+                                    builder: (BuildContext context) =>
                                         SelectOption()));
+                              }
                               }
 //                              else {
 //                                showInSnackBar(
@@ -229,7 +233,7 @@ class _ATG extends State<ATG> {
                             });;
                           },
                           child: Text(
-                            'Add',
+                            'Migrate',
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,

@@ -3,6 +3,7 @@ import 'package:amritasreeproject/CreateGroup.dart';
 import 'package:flutter/material.dart';
 import 'Dashboard.dart';
 import 'registration.dart';
+import 'MigrateGroup.dart';
 import 'list.dart';
 
 class SelectOption extends StatelessWidget {
@@ -24,8 +25,8 @@ class SelectOption extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Image.asset(
-                  'assests/images/amma.png',
-                  height: 180.0,
+                  'assets/images/amma.png',
+                  height: 100.0,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -66,10 +67,10 @@ class SelectOption extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ListingDetails()));
+                                builder: (context) => MG()));
                       },
                       child: Text(
-                        "Create Cluster",
+                        "Migrate Group",
                         style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
