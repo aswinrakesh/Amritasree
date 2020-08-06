@@ -36,8 +36,8 @@ app.get('/totalloan',function(req, res){
 	con.query(query, function(err,result){
 		// console.log(result);
 		var output = JSON.stringify(result);
-		console.log(output+'\n'); 
-		res.json(result); 
+		console.log(output+'\n');
+		res.json(result);
 	});
 });
 
@@ -47,8 +47,8 @@ app.get('/savings',function(req, res){
 	con.query(query, function(err,result){
 		// console.log(result);
 		var output = JSON.stringify(result);
-		console.log(output+'\n'); 
-		res.json(result); 
+		console.log(output+'\n');
+		res.json(result);
 	});
 });
 
@@ -58,8 +58,8 @@ app.get('/loanAmount',function(req, res){
 	con.query(query, function(err,result){
 		// console.log(result);
 		var output = JSON.stringify(result);
-		console.log(output+'\n\n'); 
-		res.json(result); 
+		console.log(output+'\n\n');
+		res.json(result);
 	});
 });
 
@@ -69,8 +69,8 @@ app.get('/depositDetails',function(req, res){
 	con.query(query, function(err,result){
 		// console.log(result);
 		var output = JSON.stringify(result);
-		console.log(output+'\n\n'); 
-		res.json(result); 
+		console.log(output+'\n\n');
+		res.json(result);
 	});
 });
 
@@ -80,8 +80,8 @@ app.get('/paymentAlert',function(req, res){
 	con.query(query, function(err,result){
 		// console.log(result);
 		var output = JSON.stringify(result);
-		console.log(output+'\n'); 
-		res.json(result); 
+		console.log(output+'\n');
+		res.json(result);
 	});
 });
 
@@ -91,8 +91,8 @@ app.get('/',function(req, res){
 	con.query(query, function(err,result){
 		// console.log(result);
 		var output = JSON.stringify(result);
-		console.log(output+'\n\n'); 
-		res.json(result); 
+		console.log(output+'\n\n');
+		res.json(result);
 	});
 });
 
@@ -101,11 +101,33 @@ app.get('/ATGget',function(req, res){
 	con.query(query, function(err,result){
 		// console.log(result);
 		var output = JSON.stringify(result);
-		console.log(output+'\n\n'); 
-		res.json(result); 
+		console.log(output+'\n\n');
+		res.json(result);
 	});
 });
 
+app.get('/:username',function(req,resp){
+	con.query('SELECT * FROM membertable WHERE username = ?',[req.params.username],
+		function(error,rows,fields){
+			if(!!error)
+				console.log('Error');
+			else{
+				resp.json(rows);
+			}
+	});
+});
+
+app.post('/atg/:username',function(req,res){
+	console.log(req.body);
+  con.query('UPDATE membertable SET GroupID = ? WHERE username = ?',[req.body.GroupID,req.params.username],function(error,rows,fields){
+    if(!!error){
+      console.log(error);
+    }
+    else{
+      res.send(JSON.stringify(rows));
+    }
+  });
+})
 app.post('/grpreg',function(req,res){
 	var postData=req.body;
 	con.query('INSERT INTO grouptable SET ?',postData,function(error,rows,fields){
@@ -117,7 +139,7 @@ app.post('/grpreg',function(req,res){
 	  }
 	});
   })
-  
+
 
 // //Query to insert data
 app.post('/register',function(req, res){
