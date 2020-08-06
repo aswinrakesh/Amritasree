@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 14, 2020 at 09:52 AM
+-- Host: localhost
+-- Generation Time: Aug 06, 2020 at 07:32 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.4
+-- PHP Version: 7.2.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -85,6 +86,11 @@ CREATE TABLE `grouptable` (
   `GroupID` int(11) NOT NULL,
   `GroupName` varchar(255) DEFAULT NULL,
   `GroupRegisterNum` int(11) DEFAULT NULL,
+  `district` text NOT NULL,
+  `panchayath` text NOT NULL,
+  `taluk` text NOT NULL,
+  `block` text NOT NULL,
+  `ward` text NOT NULL,
   `ClusterID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -92,9 +98,10 @@ CREATE TABLE `grouptable` (
 -- Dumping data for table `grouptable`
 --
 
-INSERT INTO `grouptable` (`GroupID`, `GroupName`, `GroupRegisterNum`, `ClusterID`) VALUES
-(1, 'HARIPPAD', 150, 1),
-(2, 'CHERTHALA', 120, 2);
+INSERT INTO `grouptable` (`GroupID`, `GroupName`, `GroupRegisterNum`, `district`, `panchayath`, `taluk`, `block`, `ward`, `ClusterID`) VALUES
+(1, 'Default', 0, '', '', '', '', '', 1),
+(101, 'Group 1', 1, 'Kollam', '', '', '', '', NULL),
+(102, 'Group 2', 2, 'Trivandrum', '', '', '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -139,7 +146,7 @@ CREATE TABLE `membertable` (
   `APLorBPL` varchar(255) DEFAULT NULL,
   `PhNo` varchar(10) DEFAULT NULL,
   `GroupRole` varchar(255) DEFAULT NULL,
-  `GroupID` int(11) DEFAULT NULL,
+  `GroupID` int(11) NOT NULL,
   `Username` varchar(70) NOT NULL,
   `Password` varchar(70) NOT NULL,
   `SecurityQuestion` varchar(100) NOT NULL,
@@ -155,11 +162,13 @@ INSERT INTO `membertable` (`MemberID`, `MemberName`, `Address`, `Age`, `Educatio
 (2, 'Sreeja', 'Kollam', '70', 'plus 2', 'bpl', '32136516', 'user', 1, 'sreeja123', 'helloworld', '', ''),
 (3, 'Nileena', 'Smart City Kochi, Brahmauram Road\r\nKakkanad, Gadgeon, Level B, 2nd Floor', '50', 'degree', 'apl', '5154541', 'user', 1, 'nileena123', 'haripad', '', ''),
 (4, 'Sarga', 'Kochi', '85', 'plus 2', 'apl', '5135321', 'admin', 1, 'sarga', 'sarga123', '', ''),
-(5, 'Admin', 'Pattichanthodi House, Thiruvilwamala', '12', 'degree', 'apl', '968571332', 'admin', 1, 'admin', 'admin', '', ''),
-(7, 'Anju', 'Pattichanthodi House, Thiruvilwamala', '12', 'degree', 'apl', '968571332', 'user', 1, 'anju', 'anju', '', ''),
+(5, 'Admin', 'Pattichanthodi House, Thiruvilwamala', '12', 'degree', 'apl', '968571332', 'admin', 101, 'admin', 'admin', '', ''),
+(7, 'Anju', 'Pattichanthodi House, Thiruvilwamala', '12', 'degree', 'apl', '968571330', 'user', 102, 'anju', 'anju', '', ''),
 (8, 'Riya', 'Kollam', '56', 'Engineer', 'APL', '9998745632', 'user', 1, 'riya', 'riya', '', ''),
 (13, 'Divya', 'cherthala', '58', 'Plus two', 'APL', '4949898989', 'Admin', 1, 'divya', 'divya123', 'What is the name of your house ?', 'divya'),
-(17, 'Ramya', 'Kochi', '65', 'Plus 2', 'APL', '9794694949', 'User', 1, 'ramya', 'ramya', 'What is the name of your house ?', 'Nikam');
+(17, 'Ramya', 'Kochi', '65', 'Plus 2', 'APL', '9794694949', 'User', 1, 'ramya', 'ramya', 'What is the name of your house ?', 'Nikam'),
+(21, 'adithya', 'a1', '20', 'btech', 'APL', '9947388822', 'Admin', 101, 'adithya', 'adithya', 'Name of your pet ?', 'rocky'),
+(35, 'aswin', 'a2', '22', 'qq', 'APL', '9090909090', 'Admin', 1, 'aswin', 'aswin', 'What is the name of your house ?', 'a');
 
 --
 -- Indexes for dumped tables
@@ -216,12 +225,6 @@ ALTER TABLE `deposittable`
   MODIFY `DepositID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `grouptable`
---
-ALTER TABLE `grouptable`
-  MODIFY `GroupID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `loandetailstable`
 --
 ALTER TABLE `loandetailstable`
@@ -231,7 +234,7 @@ ALTER TABLE `loandetailstable`
 -- AUTO_INCREMENT for table `membertable`
 --
 ALTER TABLE `membertable`
-  MODIFY `MemberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `MemberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables

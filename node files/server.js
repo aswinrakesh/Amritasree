@@ -97,7 +97,7 @@ app.get('/',function(req, res){
 });
 
 app.get('/ATGget',function(req, res){
-	var query = "select * from grouptable";
+	var query = "select * from grouptable WHERE GroupID!=1";
 	con.query(query, function(err,result){
 		// console.log(result);
 		var output = JSON.stringify(result);
@@ -116,10 +116,20 @@ app.get('/:username',function(req,resp){
 			}
 	});
 });
+app.get('/number/get/:PhNo',function(req,resp){
+	con.query('SELECT * FROM membertable WHERE PhNo = ?',[req.params.PhNo],
+		function(error,rows,fields){
+			if(!!error)
+				console.log('Error');
+			else{
+				resp.json(rows);
+			}
+	});
+});
 
-app.post('/atg/:username',function(req,res){
+app.post('/atg/:PhNo',function(req,res){
 	console.log(req.body);
-  con.query('UPDATE membertable SET GroupID = ? WHERE username = ?',[req.body.GroupID,req.params.username],function(error,rows,fields){
+  con.query('UPDATE membertable SET GroupID = ? WHERE PhNo = ?',[req.body.GroupID,req.params.PhNo],function(error,rows,fields){
     if(!!error){
       console.log(error);
     }
