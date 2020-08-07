@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 06, 2020 at 07:32 PM
+-- Generation Time: Aug 07, 2020 at 01:33 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.28
 
@@ -42,8 +42,20 @@ CREATE TABLE `clustertable` (
 --
 
 INSERT INTO `clustertable` (`ClusterID`, `ClusterName`, `District`, `Panchayath`, `Block`, `NumberOfGroups`) VALUES
-(1, 'haripad', 'alappuzha', 'haripad', 'haripad', 10),
-(2, 'cherthala', 'alappuzha', 'cherthala', 'cherthala', 15);
+(0, 'haripad', 'alappuzha', 'haripad', 'haripad', 10),
+(3, 'clester1', 'Kannur', 'p1', 'b1', NULL),
+(4, 'cluster2', 'Idukki', 'p2', 'b2', NULL),
+(5, 'cluster3', 'Ernakulam', 'p3', 'b3', NULL),
+(6, 'cluster4', 'Kollam', 'p4', 'b4', NULL),
+(7, 'cluster5', 'Thiruvananthapuram', 'p5', 'b5', NULL),
+(8, 'cluster6', 'Kasargod', 'p6', 'b6', NULL),
+(9, 'cluster7', 'Kannur', 'p7', 'b7', NULL),
+(10, 'cluster8', 'Thrissur', 'p8', 'b8', NULL),
+(11, 'cluster9', 'Kottayam', 'p9', 'b9', NULL),
+(12, 'cluster10', 'Kozhikode', 'p10', 'b10', NULL),
+(13, 'cluster10', 'Palakkad', 'p10', 'b10', NULL),
+(14, 'c12', 'Wayanad', 'p12', 'b12', NULL),
+(15, 'c13', 'Thiruvananthapuram', 'p13', 'b13', NULL);
 
 -- --------------------------------------------------------
 
@@ -91,7 +103,7 @@ CREATE TABLE `grouptable` (
   `taluk` text NOT NULL,
   `block` text NOT NULL,
   `ward` text NOT NULL,
-  `ClusterID` int(11) DEFAULT NULL
+  `ClusterID` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -99,9 +111,12 @@ CREATE TABLE `grouptable` (
 --
 
 INSERT INTO `grouptable` (`GroupID`, `GroupName`, `GroupRegisterNum`, `district`, `panchayath`, `taluk`, `block`, `ward`, `ClusterID`) VALUES
-(1, 'Default', 0, '', '', '', '', '', 1),
-(101, 'Group 1', 1, 'Kollam', '', '', '', '', NULL),
-(102, 'Group 2', 2, 'Trivandrum', '', '', '', '', NULL);
+(1, 'Default', 0, '', '', '', '', '', NULL),
+(101, 'Group 1', 1, 'Kollam', '', '', '', '', 15),
+(102, 'Group 2', 2, 'Trivandrum', '', '', '', '', 15),
+(103, 'g3', 3, 'Malappuram', 'p3', 't3', 'b3', 'w3', 15),
+(104, 'g4', 4, 'Idukki', 'p4', 't4', 'b4', 'w4', 15),
+(105, 'g5', 5, 'Pathanamthitta', 'p5', 't5', 'b5', 'w5', 15);
 
 -- --------------------------------------------------------
 
@@ -216,7 +231,7 @@ ALTER TABLE `membertable`
 -- AUTO_INCREMENT for table `clustertable`
 --
 ALTER TABLE `clustertable`
-  MODIFY `ClusterID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ClusterID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `deposittable`
