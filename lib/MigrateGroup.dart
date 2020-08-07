@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:amritasreeproject/selectOption.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -219,8 +218,6 @@ class _MG extends State<MG> {
                               if(datalogin[0]['GroupID']!=1)
                                 _ackAlert(context);
                               else {
-                                Fluttertoast.showToast(
-                                    msg: "${datalogin[0]['username']} hasn't been added to any group");
                                 Navigator.push(context, MaterialPageRoute(
                                     builder: (BuildContext context) =>
                                         SelectOption()));
