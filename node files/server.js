@@ -96,6 +96,16 @@ app.get('/',function(req, res){
 	});
 });
 
+app.get('/cr/:group_id',function(req,resp){
+	con.query('SELECT * FROM grouptable WHERE GroupID =?',[req.params.group_id],
+		function(error,rows,fields){
+			if(!!error)
+				console.log('Error');
+			else{
+				resp.json(rows);
+			}
+	});
+})
 app.get('/ATGget',function(req, res){
 	var query = "select * from grouptable WHERE GroupID!=1";
 	con.query(query, function(err,result){
@@ -126,6 +136,16 @@ app.get('/number/get/:PhNo',function(req,resp){
 			}
 	});
 });
+app.get('/getclusterid/:clustername',function(req,resp){
+	con.query('SELECT ClusterID FROM clustertable WHERE ClusterName =?',[req.params.clustername],
+		function(error,rows,fields){
+			if(!!error)
+				console.log('Error');
+			else{
+				resp.json(rows);
+			}
+	});
+})
 
 app.post('/atg/:PhNo',function(req,res){
 	console.log(req.body);
@@ -138,6 +158,30 @@ app.post('/atg/:PhNo',function(req,res){
     }
   });
 })
+
+app.post('/cr/:group_id',function(req,res){
+	console.log(req.body);
+  con.query('UPDATE grouptable SET ClusterID = ? WHERE GroupID = ?',[req.body.ClusterID,req.params.group_id],function(error,rows,fields){
+    if(!!error){
+      console.log(error);
+    }
+    else{
+      res.send(JSON.stringify(rows));
+    }
+  });
+})
+app.post('/cr',function(req,res){
+	var postData=req.body;
+	con.query('INSERT INTO clustertable SET ?',postData,function(error,rows,fields){
+	  if(!!error){
+		console.log(error);
+	  }
+	  else{
+		res.send(JSON.stringify(rows));
+	  }
+	});
+  })
+
 app.post('/grpreg',function(req,res){
 	var postData=req.body;
 	con.query('INSERT INTO grouptable SET ?',postData,function(error,rows,fields){
