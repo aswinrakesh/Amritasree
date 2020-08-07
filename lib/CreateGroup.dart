@@ -49,7 +49,7 @@ class GrpRegister extends State<GrpRegistration> {
     'Thrissur',
     'Wayanad'
   ];
-
+  String cluster="0";
   Future register() async{
     String url = "http://10.0.2.2:4000/grpreg";
     Map<String,String> body = {
@@ -60,7 +60,8 @@ class GrpRegister extends State<GrpRegistration> {
       "panchayath":panchayath.text,
       "taluk":taluk.text,
       "block":block.text,
-      "ward":ward.text
+      "ward":ward.text,
+      "ClusterID":cluster
     };
     var r = await http.post(url, body: body);
     print(_district);
