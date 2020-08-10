@@ -136,6 +136,17 @@ app.get('/number/get/:PhNo',function(req,resp){
 			}
 	});
 });
+app.get('/getcluster/:district',function(req,resp){
+	con.query('SELECT ClusterID FROM clustertable WHERE District =?',[req.params.district],
+		function(error,rows,fields){
+			if(!!error)
+				console.log('Error');
+			else{
+				resp.json(rows);
+			}
+	});
+})
+
 app.get('/getclusterid/:clustername',function(req,resp){
 	con.query('SELECT ClusterID FROM clustertable WHERE ClusterName =?',[req.params.clustername],
 		function(error,rows,fields){
