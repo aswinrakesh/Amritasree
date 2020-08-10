@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 07, 2020 at 01:33 PM
+-- Generation Time: Aug 10, 2020 at 07:36 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.28
 
@@ -42,7 +42,7 @@ CREATE TABLE `clustertable` (
 --
 
 INSERT INTO `clustertable` (`ClusterID`, `ClusterName`, `District`, `Panchayath`, `Block`, `NumberOfGroups`) VALUES
-(0, 'haripad', 'alappuzha', 'haripad', 'haripad', 10),
+(0, '', '', '', '', 0),
 (3, 'clester1', 'Kannur', 'p1', 'b1', NULL),
 (4, 'cluster2', 'Idukki', 'p2', 'b2', NULL),
 (5, 'cluster3', 'Ernakulam', 'p3', 'b3', NULL),
@@ -112,11 +112,16 @@ CREATE TABLE `grouptable` (
 
 INSERT INTO `grouptable` (`GroupID`, `GroupName`, `GroupRegisterNum`, `district`, `panchayath`, `taluk`, `block`, `ward`, `ClusterID`) VALUES
 (1, 'Default', 0, '', '', '', '', '', NULL),
-(101, 'Group 1', 1, 'Kollam', '', '', '', '', 15),
-(102, 'Group 2', 2, 'Trivandrum', '', '', '', '', 15),
-(103, 'g3', 3, 'Malappuram', 'p3', 't3', 'b3', 'w3', 15),
-(104, 'g4', 4, 'Idukki', 'p4', 't4', 'b4', 'w4', 15),
-(105, 'g5', 5, 'Pathanamthitta', 'p5', 't5', 'b5', 'w5', 15);
+(101, 'Group 1', 1, 'Thiruvananthapuram', '', '', '', '', 15),
+(102, 'Group 2', 2, 'Thiruvananthapuram', '', '', '', '', 15),
+(103, 'g3', 3, 'Thiruvananthapuram', 'p3', 't3', 'b3', 'w3', 15),
+(104, 'g4', 4, 'Idukki', 'p4', 't4', 'b4', 'w4', 0),
+(105, 'g5', 5, 'Pathanamthitta', 'p5', 't5', 'b5', 'w5', 0),
+(106, 'g6', 6, 'Thiruvananthapuram', 'p6', 't6', 'b6', 'w6', 15),
+(107, 'g7', 7, 'Thiruvananthapuram', 'p7', 't7', 'b7', 'w7', 15),
+(108, 'g8', 8, 'Ernakulam', 'p8', 't8', 'b8', 'w8', 5),
+(109, 'g9', 9, 'Ernakulam', 'p9', 't9', 'b9', 'w9', 5),
+(110, 'g10', 10, 'Ernakulam', 'p10', 't10', 'b10', 'w10', 5);
 
 -- --------------------------------------------------------
 
