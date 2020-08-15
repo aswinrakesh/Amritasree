@@ -116,6 +116,7 @@ app.get('/ATGget',function(req, res){
 	});
 });
 
+
 app.get('/:username',function(req,resp){
 	con.query('SELECT * FROM membertable WHERE username = ?',[req.params.username],
 		function(error,rows,fields){
@@ -136,6 +137,17 @@ app.get('/number/get/:PhNo',function(req,resp){
 			}
 	});
 });
+app.get('/getcluster/:district',function(req,resp){
+	con.query('SELECT ClusterID FROM clustertable WHERE District =?',[req.params.district],
+		function(error,rows,fields){
+			if(!!error)
+				console.log('Error');
+			else{
+				resp.json(rows);
+			}
+	});
+})
+
 app.get('/getclusterid/:clustername',function(req,resp){
 	con.query('SELECT ClusterID FROM clustertable WHERE ClusterName =?',[req.params.clustername],
 		function(error,rows,fields){
@@ -161,7 +173,7 @@ app.post('/atg/:PhNo',function(req,res){
 
 app.post('/cr/:group_id',function(req,res){
 	console.log(req.body);
-  con.query('UPDATE grouptable SET ClusterID = ? WHERE GroupID = ?',[req.body.ClusterID,req.params.group_id],function(error,rows,fields){
+  con.query('UPDATE grouptable SET ClusterID = ?, district = ? WHERE GroupID = ?',[req.body.ClusterID,req.body.district,req.params.group_id],function(error,rows,fields){
     if(!!error){
       console.log(error);
     }
