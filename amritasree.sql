@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 10, 2020 at 07:36 PM
+-- Generation Time: Aug 15, 2020 at 04:57 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.28
 
@@ -121,7 +121,10 @@ INSERT INTO `grouptable` (`GroupID`, `GroupName`, `GroupRegisterNum`, `district`
 (107, 'g7', 7, 'Thiruvananthapuram', 'p7', 't7', 'b7', 'w7', 15),
 (108, 'g8', 8, 'Ernakulam', 'p8', 't8', 'b8', 'w8', 5),
 (109, 'g9', 9, 'Ernakulam', 'p9', 't9', 'b9', 'w9', 5),
-(110, 'g10', 10, 'Ernakulam', 'p10', 't10', 'b10', 'w10', 5);
+(110, 'g10', 10, 'Ernakulam', 'p10', 't10', 'b10', 'w10', 5),
+(111, 'g11', 11, 'Ernakulam', 'p11', 't11', 'b11', 'w11', 5),
+(112, 'g12', 12, 'Ernakulam', 'p12', 't12', 'b12', 'w12', 5),
+(113, 'g13', 13, 'Thiruvananthapuram', 'p13', 't13', 'b13', 'w13', 15);
 
 -- --------------------------------------------------------
 
