@@ -142,6 +142,7 @@ class _MG extends State<MG> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
+                SizedBox(height:8.0,),
                 TextFormField(
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(top: 10.0),
@@ -160,6 +161,7 @@ class _MG extends State<MG> {
                     gid.isEmpty?'Please enter the Username!':null;
                   },
                 ),
+                SizedBox(height:20.0),
                 TextFormField(
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(top: 10.0),
@@ -178,6 +180,8 @@ class _MG extends State<MG> {
                     gid.isEmpty?'Please enter the Phone Number!':null;
                   },
                 ),
+                SizedBox(height:8.0),
+
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0)
