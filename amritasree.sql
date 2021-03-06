@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 15, 2020 at 04:57 PM
+-- Host: 127.0.0.1
+-- Generation Time: May 14, 2020 at 09:52 AM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.28
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -42,20 +41,8 @@ CREATE TABLE `clustertable` (
 --
 
 INSERT INTO `clustertable` (`ClusterID`, `ClusterName`, `District`, `Panchayath`, `Block`, `NumberOfGroups`) VALUES
-(0, '', '', '', '', 0),
-(3, 'clester1', 'Kannur', 'p1', 'b1', NULL),
-(4, 'cluster2', 'Idukki', 'p2', 'b2', NULL),
-(5, 'cluster3', 'Ernakulam', 'p3', 'b3', NULL),
-(6, 'cluster4', 'Kollam', 'p4', 'b4', NULL),
-(7, 'cluster5', 'Thiruvananthapuram', 'p5', 'b5', NULL),
-(8, 'cluster6', 'Kasargod', 'p6', 'b6', NULL),
-(9, 'cluster7', 'Kannur', 'p7', 'b7', NULL),
-(10, 'cluster8', 'Thrissur', 'p8', 'b8', NULL),
-(11, 'cluster9', 'Kottayam', 'p9', 'b9', NULL),
-(12, 'cluster10', 'Kozhikode', 'p10', 'b10', NULL),
-(13, 'cluster10', 'Palakkad', 'p10', 'b10', NULL),
-(14, 'c12', 'Wayanad', 'p12', 'b12', NULL),
-(15, 'c13', 'Thiruvananthapuram', 'p13', 'b13', NULL);
+(1, 'haripad', 'alappuzha', 'haripad', 'haripad', 10),
+(2, 'cherthala', 'alappuzha', 'cherthala', 'cherthala', 15);
 
 -- --------------------------------------------------------
 
@@ -98,33 +85,16 @@ CREATE TABLE `grouptable` (
   `GroupID` int(11) NOT NULL,
   `GroupName` varchar(255) DEFAULT NULL,
   `GroupRegisterNum` int(11) DEFAULT NULL,
-  `district` text NOT NULL,
-  `panchayath` text NOT NULL,
-  `taluk` text NOT NULL,
-  `block` text NOT NULL,
-  `ward` text NOT NULL,
-  `ClusterID` int(11) DEFAULT 0
+  `ClusterID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `grouptable`
 --
 
-INSERT INTO `grouptable` (`GroupID`, `GroupName`, `GroupRegisterNum`, `district`, `panchayath`, `taluk`, `block`, `ward`, `ClusterID`) VALUES
-(1, 'Default', 0, '', '', '', '', '', NULL),
-(101, 'Group 1', 1, 'Thiruvananthapuram', '', '', '', '', 15),
-(102, 'Group 2', 2, 'Thiruvananthapuram', '', '', '', '', 15),
-(103, 'g3', 3, 'Thiruvananthapuram', 'p3', 't3', 'b3', 'w3', 15),
-(104, 'g4', 4, 'Idukki', 'p4', 't4', 'b4', 'w4', 0),
-(105, 'g5', 5, 'Pathanamthitta', 'p5', 't5', 'b5', 'w5', 0),
-(106, 'g6', 6, 'Thiruvananthapuram', 'p6', 't6', 'b6', 'w6', 15),
-(107, 'g7', 7, 'Thiruvananthapuram', 'p7', 't7', 'b7', 'w7', 15),
-(108, 'g8', 8, 'Ernakulam', 'p8', 't8', 'b8', 'w8', 5),
-(109, 'g9', 9, 'Ernakulam', 'p9', 't9', 'b9', 'w9', 5),
-(110, 'g10', 10, 'Ernakulam', 'p10', 't10', 'b10', 'w10', 5),
-(111, 'g11', 11, 'Ernakulam', 'p11', 't11', 'b11', 'w11', 5),
-(112, 'g12', 12, 'Ernakulam', 'p12', 't12', 'b12', 'w12', 5),
-(113, 'g13', 13, 'Thiruvananthapuram', 'p13', 't13', 'b13', 'w13', 15);
+INSERT INTO `grouptable` (`GroupID`, `GroupName`, `GroupRegisterNum`, `ClusterID`) VALUES
+(1, 'HARIPPAD', 150, 1),
+(2, 'CHERTHALA', 120, 2);
 
 -- --------------------------------------------------------
 
@@ -169,7 +139,7 @@ CREATE TABLE `membertable` (
   `APLorBPL` varchar(255) DEFAULT NULL,
   `PhNo` varchar(10) DEFAULT NULL,
   `GroupRole` varchar(255) DEFAULT NULL,
-  `GroupID` int(11) NOT NULL,
+  `GroupID` int(11) DEFAULT NULL,
   `Username` varchar(70) NOT NULL,
   `Password` varchar(70) NOT NULL,
   `SecurityQuestion` varchar(100) NOT NULL,
@@ -185,13 +155,11 @@ INSERT INTO `membertable` (`MemberID`, `MemberName`, `Address`, `Age`, `Educatio
 (2, 'Sreeja', 'Kollam', '70', 'plus 2', 'bpl', '32136516', 'user', 1, 'sreeja123', 'helloworld', '', ''),
 (3, 'Nileena', 'Smart City Kochi, Brahmauram Road\r\nKakkanad, Gadgeon, Level B, 2nd Floor', '50', 'degree', 'apl', '5154541', 'user', 1, 'nileena123', 'haripad', '', ''),
 (4, 'Sarga', 'Kochi', '85', 'plus 2', 'apl', '5135321', 'admin', 1, 'sarga', 'sarga123', '', ''),
-(5, 'Admin', 'Pattichanthodi House, Thiruvilwamala', '12', 'degree', 'apl', '968571332', 'admin', 101, 'admin', 'admin', '', ''),
-(7, 'Anju', 'Pattichanthodi House, Thiruvilwamala', '12', 'degree', 'apl', '968571330', 'user', 102, 'anju', 'anju', '', ''),
+(5, 'Admin', 'Pattichanthodi House, Thiruvilwamala', '12', 'degree', 'apl', '968571332', 'admin', 1, 'admin', 'admin', '', ''),
+(7, 'Anju', 'Pattichanthodi House, Thiruvilwamala', '12', 'degree', 'apl', '968571332', 'user', 1, 'anju', 'anju', '', ''),
 (8, 'Riya', 'Kollam', '56', 'Engineer', 'APL', '9998745632', 'user', 1, 'riya', 'riya', '', ''),
 (13, 'Divya', 'cherthala', '58', 'Plus two', 'APL', '4949898989', 'Admin', 1, 'divya', 'divya123', 'What is the name of your house ?', 'divya'),
-(17, 'Ramya', 'Kochi', '65', 'Plus 2', 'APL', '9794694949', 'User', 1, 'ramya', 'ramya', 'What is the name of your house ?', 'Nikam'),
-(21, 'adithya', 'a1', '20', 'btech', 'APL', '9947388822', 'Admin', 101, 'adithya', 'adithya', 'Name of your pet ?', 'rocky'),
-(35, 'aswin', 'a2', '22', 'qq', 'APL', '9090909090', 'Admin', 1, 'aswin', 'aswin', 'What is the name of your house ?', 'a');
+(17, 'Ramya', 'Kochi', '65', 'Plus 2', 'APL', '9794694949', 'User', 1, 'ramya', 'ramya', 'What is the name of your house ?', 'Nikam');
 
 --
 -- Indexes for dumped tables
@@ -239,13 +207,19 @@ ALTER TABLE `membertable`
 -- AUTO_INCREMENT for table `clustertable`
 --
 ALTER TABLE `clustertable`
-  MODIFY `ClusterID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ClusterID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `deposittable`
 --
 ALTER TABLE `deposittable`
   MODIFY `DepositID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `grouptable`
+--
+ALTER TABLE `grouptable`
+  MODIFY `GroupID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `loandetailstable`
@@ -257,7 +231,7 @@ ALTER TABLE `loandetailstable`
 -- AUTO_INCREMENT for table `membertable`
 --
 ALTER TABLE `membertable`
-  MODIFY `MemberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `MemberID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables

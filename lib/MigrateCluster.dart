@@ -192,7 +192,7 @@ Future add(String groupid) async {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add to Cluster'),
+        title: Text('Migrate Cluster'),
       ),
       body: SingleChildScrollView(
         child: Padding(
